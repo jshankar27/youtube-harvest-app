@@ -4,6 +4,8 @@ The Youtue Data Harvesting and Warehousing is an application built on streamlit 
 
 This page contains information about gettng started.
 
+## [App Demo](https://www.linkedin.com/posts/jayashree-shankar_machinelearning-python-datascience-activity-7192005801777995776-gKJ9?utm_source=share&utm_medium=member_desktop)
+
 ## Pre-requisites:
 - Python version 3.8 above
 - Python environment manager (comes with python) - venv
@@ -17,8 +19,8 @@ This page contains information about gettng started.
 
 ## Installation steps:
 
-Step 1: Make sure you are in project folder `youtube-project` or navigate to the folder 
-`cd youtube-project`
+Step 1: Make sure you are in project folder `youtube-harvest-app` or navigate to the folder 
+`cd youtube-harvest-app`
 
 Step 2: Create a directoty to install virtual environment and its dependencies
 `python -m venv .venv`
@@ -47,9 +49,10 @@ export MONGO_PASSWORD=your_mongodb_password
 ```
 
 Step 5: Install python packages
-``` pip install streamlit pandas mysql-connector-python google-api-python-client pymongo[srv] ```
+``` pip install streamlit streamlit_option_menu pandas mysql-connector-python google-api-python-client pymongo[srv] ```
 
 Step 6: Run the Youtube data harvesting app
 ``` streamlit run youtube_app.py ```
 
 Step 7: Decativate the environment by running ```deactivate```
+

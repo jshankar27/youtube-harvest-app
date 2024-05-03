@@ -43,14 +43,14 @@ if selected=="Search Channel":
     if submitted:
         with st.spinner("Running operation..."):
             channel_result = api.fetch_channel_details(channel_id)
-            
+
             if 'channel' not in channel_result:
                 st.error(channel_result)
             
             mongo_connection = MongoConnection()
             conn_result = mongo_connection.connect_mongo_database()
             
-            result = mongo_connection.insert_into_mongodb(channel_result)
+            result = mongo_connection.upsert_into_mongodb(channel_result)
             if result.acknowledged:       
                 st.success('Data collected successfully!', icon="✅")
             else:
@@ -80,7 +80,6 @@ if selected == "Migrate":
         
         if option != "Select one":
             migrate = st.button('Migrate')
-            print(sql_connection.sql_cursor)
 
             if migrate:
                 with st.spinner("Running operation..."):
@@ -110,7 +109,6 @@ if selected == "Analyse":
     if option == "What are the names of all the videos and their corresponding channels?":
         result = sql_connection.get_video_names_with_channel_name()
         df = pd.DataFrame(result)
-        print("What are the names of all the videos and their corresponding channels? --> ", df)
         df.columns = ['Channel Name', 'Video Name']
         st.dataframe(df, hide_index=True)
 

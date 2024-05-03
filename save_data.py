@@ -18,7 +18,7 @@ class MongoConnection:
         self.collection = self.db_name.channel_data
   
 
-    def insert_into_mongodb(self, channel_data):
+    def upsert_into_mongodb(self, channel_data):
         upload_result = None
         if self.connect_mongo_database() is None:
             channel_id = channel_data['channel']['channel_id']

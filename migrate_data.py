@@ -112,7 +112,7 @@ class SqlConnection:
             password = f"{self.MYSQL_PASSWORD}")
         self.sql_cursor = sql_conn.cursor()
         self.sql_cursor.execute('use youtube_db ')
-        select_sql = '''select v.video_name, v.view_count, c.channel_name from video v inner join playlist p on p.playlist_id=v.playlist_id
+        select_sql = '''select c.channel_name, v.video_name, v.view_count from video v inner join playlist p on p.playlist_id=v.playlist_id
                             inner join channel c on c.channel_id=p.channel_id where 10 >= (select count(v.view_count) from video v1 
                                     where v1.view_count >= v.view_count) order by v.view_count desc;'''
         self.sql_cursor.execute(select_sql)
@@ -174,7 +174,7 @@ class SqlConnection:
             password = f"{self.MYSQL_PASSWORD}")
         self.sql_cursor = sql_conn.cursor()
         self.sql_cursor.execute('use youtube_db ')
-        select_sql = '''select c.channel_name from video v inner join playlist p on p.playlist_id=v.playlist_id
+        select_sql = '''select distinct(c.channel_name) from video v inner join playlist p on p.playlist_id=v.playlist_id
 		                    inner join channel c on c.channel_id=p.channel_id where year(v.plublished_date) = "2022"'''
         self.sql_cursor.execute(select_sql)
         return self.sql_cursor.fetchall()

@@ -110,7 +110,6 @@ def get_video_details_by_video_id(video_ids, youtube):
                             'duration':items['contentDetails']['duration']}
                     video_data.append(data)
             
-        print("video data after processing: ", video_ids)
         return video_data 
     except HttpError as e:
          print(f'An HTTP error occurred while fetching videos by video id: {e}')
@@ -161,6 +160,7 @@ returns channel data
 def fetch_channel_details(channel_id):
     try:
         API_KEY = os.environ["API_KEY"]
+
         if API_KEY is None:
             return "Please set your API Key as environment variable!"
 
